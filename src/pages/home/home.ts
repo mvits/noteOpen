@@ -15,15 +15,16 @@ export class HomePage {
 	@ViewChild('myNav') nav: NavController;
 
   constructor(public navCtrl: NavController, public notasService : NotasService ) {
-
   	this.notas= notasService.getNotas();
-
   }
 
-  public goToDetalle(){
-
-  	this.navCtrl.push(DetallePage);
-
+  public goToDetalle(id){
+  	this.navCtrl.push(DetallePage,{id:id});
   }
+
+  public createNota(){
+    this.navCtrl.push(DetallePage,{id:0});
+
+  } 
 
 }
