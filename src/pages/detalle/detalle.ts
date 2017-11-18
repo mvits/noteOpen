@@ -28,9 +28,11 @@ export class DetallePage {
   addNota(){
 
     if(this.id != 0){
+      //Edición Nota
       this.notasService.editNota(this.nota);
       alert('Che buono!! Nota editada con éxito!');
     } else {
+      //Crear Nota
       this.nota.id = Date.now();
       this.notasService.createNota(this.nota);
       alert('Che buono!! Nota creada con éxito!');
@@ -38,6 +40,11 @@ export class DetallePage {
 
     this.navCtrl.pop();
 
+  }
+  deleteNota(){
+    this.notasService.deleteNota(this.nota);
+    alert('Che buono!! Nota eliminada con éxito!');
+    this.navCtrl.pop();
   }
 
   ionViewDidLoad() {

@@ -23,9 +23,17 @@ export class NotasService {
 	}
 
 	public editNota(nota){
-		for (let i; i< this.notas.length; i++) {
+		for (let i = 0; i< this.notas.length; i++) {
 			if (this.notas[i].id == nota.id) { 
 				this.notas[i] = nota;
+			}
+		}
+	}
+
+	public deleteNota(nota){
+		for (let i = 0; i< this.notas.length; i++) {
+			if (this.notas[i].id == nota.id) { 
+				this.notas.splice(i,1);
 			}
 		}
 	}
