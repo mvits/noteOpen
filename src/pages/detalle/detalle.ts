@@ -22,7 +22,15 @@ export class DetallePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public notasService: NotasService) {
   	this.id = navParams.get('id');
     if(this.id != 0){
-      this.nota = notasService.getNota(this.id);  
+      notasService.getNota(this.id)
+        .valueChanges()
+        .subscribe(nota => {
+          //this.nota=nota;
+          this.nota.id=nota['id'];
+          this.nota.titulo=nota['titulo'];
+          this.nota.descripcion=nota['descripcion'];
+        });
+           
     }
   }
   addNota(){

@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from "angularfire2/database/database";
 
 @Injectable()
 
 export class NotasService {
 
-	notas = [
-		{id:1, titulo:'Nota 1', descripcion:'Descripción de Nota 1'},
-		{id:2, titulo:'Nota 2', descripcion:'Descripción de Nota 2'},
-		{id:3, titulo:'Nota 3', descripcion:'Descripción de Nota 3'}
-	];
+	constructor(public afDB: AngularFireDatabase){}
+
+	notas = [];
 
 	public getNotas(){
-		return this.notas;
+		//return this.notas;
+		return this.afDB.list('notas/');
+
 	}
 
 	public getNota(id){
-		return this.notas.filter(function(e,i) {return e.id==id})[0] || {id: null, titulo: null, descripcion: null};
+		//return this.notas.filter(function(e,i) {return e.id==id})[0] || {id: null, titulo: null, descripcion: null};
+		return this.afDB.object('notas/'+id);
 	}
 
 	public createNota(nota){
-		this.notas.push(nota);
+		//this.notas.push(nota);
+		this.afDB.database.ref('notas/'+nota.id).set(nota);
 	}
 
 	public editNota(nota){
