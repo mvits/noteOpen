@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { NotasService } from '../../services/notas.service';
+import { DetallePage } from '../detalle/detalle';
+
 
 @Component({
   selector: 'page-home',
@@ -7,8 +10,25 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+	notas=[];
 
+	@ViewChild('myNav') nav: NavController;
+
+  constructor(public navCtrl: NavController, public notasService : NotasService ) {
+  	notasService.getNotas()
+      .valueChanges()
+      .subscribe( notas => {
+            this.notas = notas;
+      });
   }
+
+  public goToDetalle(id){
+  	this.navCtrl.push(DetallePage,{id:id});
+  }
+
+  public createNota(){
+    this.navCtrl.push(DetallePage,{id:0});
+
+  } 
 
 }

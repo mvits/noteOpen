@@ -1,0 +1,37 @@
+<!--
+  Generated template for the DetallePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalle de Nota</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-list>
+
+	  <ion-item>
+	    <ion-label floating>Título</ion-label>
+	    <ion-input type="text" [(ngModel)]="nota.titulo"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Descripción</ion-label>
+	    <ion-textarea [(ngModel)]="nota.descripcion"></ion-textarea>
+	  </ion-item>
+	  
+	</ion-list>
+	
+	<div padding>
+		<button ion-button block (click)="addNota()">Guardar Nota</button>
+		<button *ngIf="id != 0" ion-button block (click)="deleteNota()" color="danger">Eliminar Nota</button>	
+	</div>
+	
+
+</ion-content>
